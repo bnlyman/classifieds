@@ -5,7 +5,9 @@
   <h2><%= item.name %></h2>
   <h3><%= item.price %></h3>
   <p><%= item.description %></p>
-  <%= link_to 'Show item', item_path(item) %>
+  <%= link_to 'Show', item_path(item) %>
+  <%= link_to 'Edit', edit_item_path(item) %>
+  <%= link_to 'Delete', item, method: :delete %>
 <% end %>
 
 
