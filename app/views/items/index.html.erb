@@ -1,8 +1,17 @@
+<!-- DataTables CSS -->
+<link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.5/css/jquery.dataTables.css">
+  
+<!-- jQuery -->
+<script type="text/javascript" charset="utf8" src="//code.jquery.com/jquery-1.10.2.min.js"></script>
+  
+<!-- DataTables -->
+<script type="text/javascript" charset="utf8" src="//cdn.datatables.net/1.10.5/js/jquery.dataTables.js"></script>
+
 <body>
-	<div class ="span">
+	<div class ="container">
 		<h1> Items </h1>
-		<p><%= link_to 'Post new item', new_item_path %></p>
-		<table class = 'table table-striped'>
+		<p><%= link_to 'Post new item', new_item_path, class: 'btn btn-primary'%></p>
+		<table id = 'list_items' class = 'table table-striped'>
 			<thead>
 	      <tr>
 	      	<th>Status</th>
@@ -10,7 +19,7 @@
 	        <th>Name</th>
 	        <th>Price</th>
 	        <th>Description</th>
-	        <th> </th>
+	        <th></th>
 	      </tr>
 	    </thead>
 	    <tbody>
@@ -23,11 +32,14 @@
 				<% end %>
 			  <td><%= item.category %></td>
 			  <td><%= item.name %></td>
-			  <td><%= item.price %></td>
+			  <td>$<%= item.price %></td>
 			  <td><%= item.description %></td>
-			  <td><%= link_to 'Show', item_path(item) %>
-		  			<%= link_to 'Edit', edit_item_path(item) %>
-		  			<%= link_to 'Delete', item, method: :delete %>
+			  <td>
+			  	<div class="btn-group btn-group-xs">
+  					<%= link_to 'View', item_path(item), class: "btn btn-primary" %>
+  					<%= link_to 'Edit', edit_item_path(item), class: "btn btn-primary" %>
+ 						<%= link_to 'Delete', item, method: :delete, class: "btn btn-primary" %>
+ 					</div>
 		  	</td>
 			</tr>
 			<% end %>
