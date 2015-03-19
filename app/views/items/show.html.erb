@@ -1,13 +1,20 @@
-<div class="jumbotron">
-	<h1> Item </h1>
-	<% if @item.status == true %>
-		<h5>Sold</h5>
-		<% else %>
-		<h5>Available</h5>
-	<% end %>
-	<h4><%= @item.category %></h4>
-	<h2><%= @item.name %></h2>
-	<h3><%= @item.price %></h3>
-	<p><%= @item.description %></p>
-	<%= link_to 'Back', items_path %>
+
+<div class='container'>
+	<div class="row">
+	  <div class="col-sm-3">
+	  	<h4>Item:<%= @item.name %></h4>
+	  	<h4>Category: <%= @item.category %></h4>
+			<% if @item.status == true %>
+				<h4>Status: Sold</h4>
+				<% else %>
+				<h4>Status: Available</h4>
+			<% end %>
+			<h4>Price: $<%= @item.price %></h4>
+			<h4>Seller: <%= @item.user.email %>
+	  </div>
+	  <div class="col-lg-6">
+	  	<h4>Description: </h4><p><%= @item.description %></p>
+	  </div>
+	</div>
+	<%= link_to 'Back', items_path, class: "btn btn-primary"  %>
 </div>
