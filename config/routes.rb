@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
 
+  get 'comments/new'
+
+  get 'comments/edit'
+
   root 'static_pages#home'
   
   devise_for :users, :controllers => { registrations: 'registrations' }
@@ -8,7 +12,9 @@ Rails.application.routes.draw do
   get '/profile', to: 'users#profile', as: :profile
   get '/about', to: 'static_pages#about', as: :about 
 
-  resources :items
+  resources :items do
+    resources :comments, except: [:index, :show]
+  end
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

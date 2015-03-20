@@ -3,7 +3,7 @@
 	<%= form_for @item do |f| %>
 	  
 	  <%= f.label :Category %>: 
- 		<%= f.select :category, options_for_select(%w(Automobiles Electronics Furniture Home/Kitchen Apparel/Accessories Outdoors/Sporting Goods Other))%>
+ 		<%= f.select :category, options_for_select(%w(Automobiles Electronics Furniture Home/Kitchen Apparel/Accessories Outdoors/SportingGoods Other))%>
 
 	  <%= f.label :Name %> 
 	  <%= f.text_field :name %>

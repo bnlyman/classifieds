@@ -1,20 +1,39 @@
 
-<div class='container'>
+<div class='show jumbotron'>
+	<h3><%= @item.name %></h3>
 	<div class="row">
 	  <div class="col-sm-3">
-	  	<h4>Item:<%= @item.name %></h4>
-	  	<h4>Category: <%= @item.category %></h4>
+	  	<h5>Category:</h5><h4><%= @item.category %></h4><br>
 			<% if @item.status == true %>
-				<h4>Status: Sold</h4>
+				<h5>Status:</h5><h4>Sold</h4><br>
 				<% else %>
-				<h4>Status: Available</h4>
+				<h5>Status:</h5><h4>Available</h4><br>
 			<% end %>
-			<h4>Price: $<%= @item.price %></h4>
-			<h4>Seller: <%= @item.user.email %>
+			<h5>Price:</h5><h4>$<%= @item.price %></h4><br>
+			<h5>Seller:</h5><h4><%= @item.user.email %></h4><br>
 	  </div>
-	  <div class="col-lg-6">
-	  	<h4>Description: </h4><p><%= @item.description %></p>
-	  </div>
+	  <div class="col-sm-3">
+	  	<h5>Description:  </h5>
+	  	<p><%= @item.description %></p>
+		</div>
+		<div class = 'col-sm-3'>
+			<%= link_to 'Back to Items', :back, class: "btn btn-primary btn-sm"  %>
+		</div>
+	</div class= 'container'>
+		<h3>
+		  Comments
+		  <%= link_to "Add a Comment", new_item_comment_path(@item), class: "btn btn-primary btn-sm" %>
+		</h3>
+		<% @item.comments.each do |comment| %>
+		  <blockquote>
+		    <p><%= comment.body %></p>
+		    <footer><%= comment.user.email %>
+		    <% if comment.user == current_user && user_signed_in? %>
+		      <%= link_to "EDIT", edit_item_comment_path(@item, comment) %>
+		      <%= link_to "DELETE", item_comment_path(@item, comment), method: :delete, data: { confirm: 'Are you sure?' } %>
+		    </footer>
+		    <% end %>
+		  </blockquote>
+		<% end %>
 	</div>
-	<%= link_to 'Back', items_path, class: "btn btn-primary"  %>
 </div>
