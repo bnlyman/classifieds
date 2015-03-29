@@ -39,13 +39,13 @@ class CommentsController < ApplicationController
   	end
   end
 
-  private
+private
 
   def comment_params
   	params.require(:comment).permit(:body, :user_id, :item_id)
   end
 
   def set_item
-  	@item = Item.find(params[:item_id])
+  	, n 
   end
 end
